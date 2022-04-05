@@ -1,11 +1,15 @@
+// importar gesture handlers
 import React from 'react';
-import Home from './src/screens/Home';
+import {NavigationContainer} from '@react-navigation/native';
+import {StatusBar} from 'react-native';
 import firebase from './src/services/firebaseConnection';
+import Routes from './src/routes';
 
 export default function App() {
   return (
-    <>
-      <Home />
-    </>
+    <NavigationContainer>
+      <StatusBar backgroundColor="#131313" barStyle='light-content' />
+      <Routes />
+    </NavigationContainer>
   );
 }
