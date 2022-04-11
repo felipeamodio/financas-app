@@ -8,20 +8,21 @@ import {
     Input,
     SubmitButton,
     SubmitText,
-    Link,
-    LinkText    
 } from './styles';
-import {useNavigation} from '@react-navigation/native';
 
-export default function SignIn(){
-    const navigation = useNavigation();
-
+export default function SignUp(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+
     const [isFocusedEmail, setIsFocusedEmail] = useState(false);
     const [isFilledEmail, setIsFilledEmail] = useState(false);
+
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
     const [isFilledPassword, setIsFilledPassword] = useState(false);
+
+    const [isFocusedName, setIsFocusedName] = useState(false);
+    const [isFilledName, setIsFilledName] = useState(false);
 
     function handleInputFocusEmail(){
         setIsFocusedEmail(true);
@@ -39,6 +40,14 @@ export default function SignIn(){
         setIsFocusedPassword(false);
     }
 
+    function handleInputFocusName(){
+        setIsFocusedName(false);
+    }
+
+    function handleInputBlurName(){
+        setIsFocusedName(false);
+    }
+
     return(
         <Background>
         <Container 
@@ -46,6 +55,19 @@ export default function SignIn(){
             enable
         >
            <Logo source={require('../../assets/Logo.png')} />
+            
+            <AreaInput isFocused={isFocusedName}>
+                <Input
+                    placeholder="Nome"
+                    autoCorrect={false}
+                    onFocus={handleInputFocusName}
+                    onBlur={handleInputBlurName}
+                    isFocused={isFocusedName}
+                    value={name}
+                    onChangeText={(email) => setEmail(email)}
+                    color={(isFocusedName || isFilledName) ? '#00B94A' : 'rgba(0, 0, 0, 0.20)'}
+                />
+            </AreaInput>
             
             <AreaInput isFocused={isFocusedEmail}>
                 <Input
@@ -63,7 +85,7 @@ export default function SignIn(){
 
             <AreaInput isFocused={isFocusedPassword}>
                 <Input
-                    placeholder="Digite sua senha"
+                    placeholder="Crie uma senha"
                     autoCorrect={false}
                     autoCapitalize="none"
                     onFocus={handleInputFocusPassword}
@@ -76,12 +98,9 @@ export default function SignIn(){
             </AreaInput>
 
             <SubmitButton>
-                <SubmitText>Acessar</SubmitText>
+                <SubmitText>Cadastrar</SubmitText>
             </SubmitButton>
 
-            <Link onPress={() => navigation.navigate('SignUp')}>
-                <LinkText>Criar uma conta</LinkText>
-            </Link>
         </Container>
         </Background>
     )
