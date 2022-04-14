@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Platform} from 'react-native';
 import {
     Container, 
@@ -10,10 +10,12 @@ import {
     SubmitText,
 } from './styles';
 
+import {AuthContext} from '../../contexts/auth';
+
 export default function SignUp(){
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
+    const [isEmail, setIsEmail] = useState('');
+    const [isPassword, setIsPassword] = useState('');
+    const [isName, setIsName] = useState('');
 
     const [isFocusedEmail, setIsFocusedEmail] = useState(false);
     const [isFilledEmail, setIsFilledEmail] = useState(false);
@@ -23,6 +25,8 @@ export default function SignUp(){
 
     const [isFocusedName, setIsFocusedName] = useState(false);
     const [isFilledName, setIsFilledName] = useState(false);
+
+    const {userSignUp} = useContext(AuthContext);
 
     function handleInputFocusEmail(){
         setIsFocusedEmail(true);
@@ -48,6 +52,10 @@ export default function SignUp(){
         setIsFocusedName(false);
     }
 
+    function handleSignUp(){
+        userSignUp(userEmail, userName, userPassword);
+    }
+
     return(
         <Background>
         <Container 
@@ -63,8 +71,8 @@ export default function SignUp(){
                     onFocus={handleInputFocusName}
                     onBlur={handleInputBlurName}
                     isFocused={isFocusedName}
-                    value={name}
-                    onChangeText={(email) => setEmail(email)}
+                    value={isName}
+                    onChangeText={(name) => setIsName(name)}
                     color={(isFocusedName || isFilledName) ? '#00B94A' : 'rgba(0, 0, 0, 0.20)'}
                 />
             </AreaInput>
@@ -77,8 +85,8 @@ export default function SignUp(){
                     onFocus={handleInputFocusEmail}
                     onBlur={handleInputBlurEmail}
                     isFocused={isFocusedEmail}
-                    value={email}
-                    onChangeText={(email) => setEmail(email)}
+                    value={isEmail}
+                    onChangeText={(email) => setIsEmail(email)}
                     color={(isFocusedEmail || isFilledEmail) ? '#00B94A' : 'rgba(0, 0, 0, 0.20)'}
                 />
             </AreaInput>
@@ -91,13 +99,13 @@ export default function SignUp(){
                     onFocus={handleInputFocusPassword}
                     onBlur={handleInputBlurPassword}
                     isFocused={isFocusedPassword}
-                    value={password}
-                    onChangeText={(password) => setPassword(password)}
+                    value={isPassword}
+                    onChangeText={(password) => setIsPassword(password)}
                     color={(isFocusedPassword || isFilledPassword) ? '#00B94A' : 'rgba(0, 0, 0, 0.20)'}
                 />
             </AreaInput>
 
-            <SubmitButton>
+            <SubmitButton onPress={handleSignUp}>
                 <SubmitText>Cadastrar</SubmitText>
             </SubmitButton>
 
