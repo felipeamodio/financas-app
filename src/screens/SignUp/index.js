@@ -53,7 +53,7 @@ export default function SignUp(){
     }
 
     function handleSignUp(){
-        userSignUp(userEmail, userName, userPassword);
+        userSignUp(email, name, password);
     }
 
     return(

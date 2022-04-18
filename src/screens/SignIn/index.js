@@ -12,6 +12,7 @@ import {
     LinkText    
 } from './styles';
 import {useNavigation} from '@react-navigation/native';
+import { AuthContext } from '../../contexts/auth';
 
 export default function SignIn(){
     const navigation = useNavigation();
@@ -22,6 +23,8 @@ export default function SignIn(){
     const [isFilledEmail, setIsFilledEmail] = useState(false);
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
     const [isFilledPassword, setIsFilledPassword] = useState(false);
+
+    const {userSignUp} = useContext(AuthContext)
 
     function handleInputFocusEmail(){
         setIsFocusedEmail(true);
@@ -37,6 +40,10 @@ export default function SignIn(){
 
     function handleInputBlurPassword(){
         setIsFocusedPassword(false);
+    }
+
+    function handleLogin(){
+        console.log(userSignUp.userName)
     }
 
     return(
@@ -75,7 +82,7 @@ export default function SignIn(){
                 />
             </AreaInput>
 
-            <SubmitButton onPress={() => {}}>
+            <SubmitButton onPress={handleLogin}>
                 <SubmitText>Acessar</SubmitText>
             </SubmitButton>
 
