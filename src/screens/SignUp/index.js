@@ -53,7 +53,7 @@ export default function SignUp(){
     }
 
     function handleSignUp(){
-        userSignUp(email, name, password);
+        userSignUp(isEmail, isPassword, isName);
     }
 
     return(
@@ -72,7 +72,7 @@ export default function SignUp(){
                     onBlur={handleInputBlurName}
                     isFocused={isFocusedName}
                     value={isName}
-                    onChangeText={(name) => setIsName(name)}
+                    onChangeText={(nameUser) => setIsName(nameUser)}
                     color={(isFocusedName || isFilledName) ? '#00B94A' : 'rgba(0, 0, 0, 0.20)'}
                 />
             </AreaInput>
