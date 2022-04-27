@@ -24,7 +24,7 @@ export default function SignIn(){
     const [isFocusedPassword, setIsFocusedPassword] = useState(false);
     const [isFilledPassword, setIsFilledPassword] = useState(false);
 
-    const {userSignUp} = useContext(AuthContext)
+    const {userSignIn} = useContext(AuthContext)
 
     function handleInputFocusEmail(){
         setIsFocusedEmail(true);
@@ -43,7 +43,7 @@ export default function SignIn(){
     }
 
     function handleLogin(){
-        
+        userSignIn(email, password)
     }
 
     return(
