@@ -1,10 +1,26 @@
-import React, {useState, createContext} from 'react';
+import React, {useState, createContext, useEffect} from 'react';
 import firebase from '../services/firebaseConnection';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const AuthContext = createContext({});
 
 function AuthProvider({children}){
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    //manter logado
+    useEffect(() => {
+        async function loadStorage(){
+            const storageUser = await AsyncStorage.getItem('Auth_user');
+
+            if(storageUser){
+                setUser(JSON.parse(storageUser))
+                setLoading(false)
+            }
+            setLoading(false)
+        }
+        loadStorage();
+    }, [])
 
     //Logar usuário
     async function userSignIn(email, password){
@@ -18,7 +34,8 @@ function AuthProvider({children}){
                     nome: snapshot.val().nome,
                     email: value.user.email
                 }
-                setUser(data)
+                setUser(data);
+                storageUser(data);
             }) 
         })
         .catch((error) => {
@@ -42,6 +59,7 @@ function AuthProvider({children}){
                     email: value.user.email.trim(),
                 }
                 setUser(data);
+                storageUser(data);
             })
         })
         .catch((error) => {
@@ -49,8 +67,13 @@ function AuthProvider({children}){
         })
     }
 
+    //salvando dados no async storage
+    async function storageUser(data){
+        await AsyncStorage.setItem('Auth_user', JSON.stringify(data))
+    }
+
     return(
-        <AuthContext.Provider value={{signed: !!user, user, userSignUp, userSignIn}}>
+        <AuthContext.Provider value={{signed: !!user, user, userSignUp, userSignIn, loading}}>
             {children}
         </AuthContext.Provider>
     )
