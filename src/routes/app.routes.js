@@ -8,8 +8,29 @@ const AppDrawer = createDrawerNavigator();
 
 function AppRoutes(){
     return(
-        <AppDrawer.Navigator>
-            <AppDrawer.Screen name="Home" component={Home} />
+        <AppDrawer.Navigator
+            screenOptions={{
+                drawerStyle: {
+                    backgroundColor: '#171717',
+                },
+                drawerLabelStyle: {
+                    fontWeight: 'bold'
+                },
+                drawerActiveBackgroundColor: '#00B94A',
+                drawerActiveTintColor: '#FFFFFF',
+                drawerInactiveBackgroundColor: '#000000',
+                drawerInactiveTintColor: '#DDDDDD',
+                drawerItemStyle: {
+                    marginVertical: 5
+                }
+            }}
+        >
+            <AppDrawer.Screen 
+                name="Home" 
+                component={Home} 
+                options={{
+                    headerShown: false
+                }} />
         </AppDrawer.Navigator>
     )
 }
