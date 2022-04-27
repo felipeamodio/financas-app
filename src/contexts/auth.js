@@ -72,8 +72,17 @@ function AuthProvider({children}){
         await AsyncStorage.setItem('Auth_user', JSON.stringify(data))
     }
 
+    // deslogando usuário
+    async function userSignOut(){
+        await firebase.auth().signOut();
+        await AsyncStorage.clear()
+        .then(() => {
+            setUser(null);
+        })
+    }
+
     return(
-        <AuthContext.Provider value={{signed: !!user, user, userSignUp, userSignIn, loading}}>
+        <AuthContext.Provider value={{signed: !!user, user, loading, userSignUp, userSignIn, userSignOut}}>
             {children}
         </AuthContext.Provider>
     )
