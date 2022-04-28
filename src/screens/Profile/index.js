@@ -7,20 +7,29 @@ import {
     Logout,
     LogoutText
 } from './styles';
+import {useNavigation} from '@react-navigation/native';
 
 import {AuthContext} from '../../contexts/auth';
 
 export default function Profile(){
     const {user, userSignOut} = useContext(AuthContext);
+    const navigation = useNavigation();
+
     return(    
         <Container>
-            <Name>Felipe</Name>
+            <Name>{user && user.nome}</Name>
 
-            <NewLink activeOpacity={0.7}>
+            <NewLink 
+                activeOpacity={0.7} 
+                onPress={() => navigation.navigate('Registrar')}
+            >
                 <NewText>Registrar gastos</NewText>
             </NewLink>
 
-            <Logout activeOpacity={0.7}>
+            <Logout 
+                activeOpacity={0.7}
+                onPress={() => userSignOut()}
+            >
                 <LogoutText>Sair</LogoutText>
             </Logout>
         </Container>
