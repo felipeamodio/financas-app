@@ -1,35 +1,31 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Background = styled.View`
     flex: 1;
-    justify-content: center;
-    align-items: center;
-    background-color: purple;
+    background-color: #131313;
 `;
 
-export const Title = styled.Text`
-    color: ${props => props.cor};
-    font-size: ${props => props.tam}px;
+export const Container = styled.View`
+    margin-left: 35px;
+    margin-bottom: 25px;
 `;
 
 export const Name = styled.Text`
-    color: white;
-    font-size: 20px;
-    margin-top: 50;
-`;
-
-export const LogOut = styled.TouchableOpacity`
-    margin-top: 40px;
-    width: 50%;
-    height: 30px;
-    align-items: center;
-    justify-content: center;
-    background-color: #FF0000;
-    border-radius: 8px;
-`;
-
-export const TextLogOut = styled.Text`
+    font-size: 18px;
     color: #FFFFFF;
-    font-size: 20;
+    font-style: italic;
+`;
+
+export const Score = styled.Text`
+    margin-top: 10px;
+    font-size: 32px;
     font-weight: bold;
+    color: #FFFFFF;
+`;
+
+export const Title = styled.Text`
+    margin-left: 35px;
+    color: #00B94A;
+    margin-bottom: 10px;
+    font-size: 16px;
 `;

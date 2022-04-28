@@ -1,20 +1,29 @@
 import React, {useContext} from 'react';
-import {Container, LogOut, TextLogOut, Name} from './styles';
+import {
+    Background,
+    Container,
+    Name,
+    Score,
+    Title
+} from './styles';
+
+import DrawerButton from '../../components/DrawerButton';
 
 import {AuthContext} from '../../contexts/auth';
 
 export default function Home(){
-    const {user, userSignOut} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
 
     return(
-        <Container>
-            <Name>Home</Name>
-            <Name>{user && user.nome}</Name>
-            <Name>{user && user.email}</Name>
+        <Background>
+            <DrawerButton />
 
-            <LogOut onPress={() => userSignOut()}>
-                <TextLogOut>Sair</TextLogOut>
-            </LogOut>
-        </Container>
+            <Container>
+                <Name>Felipe Alves</Name>
+                <Score>R$190,00</Score>
+            </Container>
+
+            <Title>Últimas movimentações</Title>
+        </Background>
     )
 }
