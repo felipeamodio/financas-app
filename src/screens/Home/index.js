@@ -1,18 +1,26 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {
     Background,
     Container,
     Name,
     Score,
-    Title
+    Title,
+    List
 } from './styles';
 
 import DrawerButton from '../../components/DrawerButton';
+import HistoricList from '../../components/HistoricList';
 
 import {AuthContext} from '../../contexts/auth';
 
 export default function Home(){
     const {user} = useContext(AuthContext);
+    const [historic, setHistoric] = useState([
+        {key: '1', type: 'receita', value: 1200},
+        {key: '2', type: 'despesa', value: 400},
+        {key: '3', type: 'receita', value: 1000},
+        {key: '4', type: 'despesa', value: 1800},
+    ])
 
     return(
         <Background>
@@ -24,6 +32,13 @@ export default function Home(){
             </Container>
 
             <Title>Últimas movimentações</Title>
+
+            <List
+                showsVerticalScrollIndicator={false}
+                data={historic}
+                keyExtractor={item => item.key}
+                renderItem={({item}) => (<HistoricList />)}
+             />
         </Background>
     )
 }

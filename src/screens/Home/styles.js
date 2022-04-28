@@ -29,3 +29,14 @@ export const Title = styled.Text`
     margin-bottom: 10px;
     font-size: 16px;
 `;
+
+export const List = styled.FlatList.attrs({
+    marginHorizontal: 15
+})`
+    padding-top: 15px;
+    background-color: #FFFFFF;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-left: 8px;
+    margin-right: 8px;
+`;
