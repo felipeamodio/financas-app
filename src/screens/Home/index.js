@@ -16,10 +16,10 @@ import {AuthContext} from '../../contexts/auth';
 export default function Home(){
     const {user} = useContext(AuthContext);
     const [historic, setHistoric] = useState([
-        {key: '1', type: 'receita', value: 1200},
-        {key: '2', type: 'despesa', value: 400},
-        {key: '3', type: 'receita', value: 1000},
-        {key: '4', type: 'despesa', value: 1800},
+        {key: '1', type: 'receita', value: 1200.00},
+        {key: '2', type: 'despesa', value: 400.00},
+        {key: '3', type: 'receita', value: 1000.80},
+        {key: '4', type: 'despesa', value: 1800.90},
     ])
 
     return(
@@ -37,7 +37,7 @@ export default function Home(){
                 showsVerticalScrollIndicator={false}
                 data={historic}
                 keyExtractor={item => item.key}
-                renderItem={({item}) => (<HistoricList />)}
+                renderItem={({item}) => (<HistoricList data={item} />)}
              />
         </Background>
     )

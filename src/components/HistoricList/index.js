@@ -9,17 +9,20 @@ import {
 
 import { Feather } from '@expo/vector-icons';
 
-export default function HistoricList(){
+export default function HistoricList({data}){
     return(
         <Container>
             <Type>
-                <IconView>
-                    <Feather name="arrow-up" size={20} color="#FFFFFF" />
-                    <TextType>receita</TextType>
+                <IconView type={data.type}>
+                    <Feather 
+                        name={data.type === 'despesa' ? 'arrow-down' : 'arrow-up'}
+                        size={20} 
+                        color="#FFFFFF" />
+                    <TextType>{data.type}</TextType>
                 </IconView>
             </Type>
 
-            <Value>R$900,00</Value>
+            <Value>R$ {data.value}</Value>
         </Container>
     )
 }

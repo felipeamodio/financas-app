@@ -4,7 +4,7 @@ export const Container = styled.View`
     margin-bottom: 5px;
     padding: 10px;
     box-shadow: 2px 2px rgba(0, 0, 0, 0.40);
-    background-color: rgba(0, 0, 0, 0.02); //aumentar
+    background-color: rgba(0, 0, 0, 0.05); 
 `;
 
 export const Type = styled.View`
@@ -13,7 +13,7 @@ export const Type = styled.View`
 
 export const IconView = styled.View`
     flex-direction: row;
-    background-color: #049301;
+    background-color: ${props => props.type === 'despesa' ? '#C62C36' : '#049301'};
     padding-bottom: 3px;
     padding-top: 3px;
     padding-left: 8px;
