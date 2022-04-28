@@ -9,6 +9,8 @@ import {
 } from './styles';
 import {useNavigation} from '@react-navigation/native';
 
+import DrawerButton from '../../components/DrawerButton';
+
 import {AuthContext} from '../../contexts/auth';
 
 export default function Profile(){
@@ -17,6 +19,8 @@ export default function Profile(){
 
     return(    
         <Container>
+            <DrawerButton />
+            
             <Name>{user && user.nome}</Name>
 
             <NewLink 
