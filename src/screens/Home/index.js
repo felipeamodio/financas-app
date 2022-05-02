@@ -27,7 +27,7 @@ export default function Home(){
             <DrawerButton />
 
             <Container>
-                <Name>Felipe Alves</Name>
+                <Name>{user && user.name}</Name>
                 <Score>R$190,00</Score>
             </Container>
 
