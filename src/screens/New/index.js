@@ -7,10 +7,11 @@ import {
     SubmitText
 } from './styles';
 import DrawerButton from '../../components/DrawerButton';
+import PickerComponent from '../../components/Picker';
 
 export default function New(){
     const [value, setValue] = useState('');
-    const [type, setType] = useState(null);
+    const [type, setType] = useState('receita');
 
     return(
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -26,6 +27,8 @@ export default function New(){
                         value={value}
                         onChangeText={(text) => setValue(text)}
                     />
+
+                    <PickerComponent onChange={setType} type={type} />
 
                     <SubmitButton activeOpacity={0.7}>
                         <SubmitText>Salvar</SubmitText>
